@@ -8,19 +8,17 @@ class App extends Component {
   constructor() {
     super();
     this.state = { 
-      input: "0", 
+      input: "", 
       operator: "", 
       previousNumber: ""};
   }
 
 
- 
-
-  handleInput = (e) => {
-    if (this.state.input === "0"){
+    handleInput = (e) => {
+    if (this.state.input){
       this.setState({ input: e.target.value});
 
-    }else {
+    }else{
       let num = this.state.input
       num += e.target.value
       this.setState({input: num})
@@ -46,22 +44,22 @@ class App extends Component {
 
      const {operator, input, previousNumber} = this.state
     if (operator === "/"){
-      sum = parseFloat(previousNumber) / parseFloat(input)
+      sum = Number(previousNumber) / Number(input)
       this.setState({input: sum.toFixed(2)})
     } else if (operator === "*") {
-      sum = parseFloat(previousNumber) * parseFloat(input)
+      sum = Number(previousNumber) * Number(input)
       this.setState({input: sum})
     } else if (operator === "-"){
-      sum = parseFloat(previousNumber) - parseFloat(input)
+      sum = Number(previousNumber) - Number(input)
       this.setState({input: sum})
     } else if (operator === "+"){
-      sum = parseFloat(previousNumber) + parseFloat(input)
+      sum = Number(previousNumber) + Number(input)
       this.setState({input: sum})
     }
    }
 
    handleClear = () => {
-     this.setState({input: "0", operator:"", previousNumber:""})
+     this.setState({input: "", operator:"", previousNumber:""})
    }
    
    handleNegative = () => {
@@ -79,7 +77,13 @@ class App extends Component {
         <div className="calculator-container">
           <Input input={Number(this.state.input).toLocaleString("en-US")} />
           
-          <Buttons handleInput={this.handleInput} handleZero={this.handleZero} handleEqual={this.handleEqual} handleOp={this.handleOp} handleClear={this.handleClear} handleNegative={this.handleNegative}/>
+          <Buttons 
+          handleInput={this.handleInput} 
+          handleZero={this.handleZero} 
+          handleEqual={this.handleEqual} 
+          handleOp={this.handleOp} 
+          handleClear={this.handleClear} 
+          handleNegative={this.handleNegative}/>
           
         </div>
       </div>

@@ -9,7 +9,9 @@ class Input extends React.Component {
     const {input} = this.props 
       return (
         <div className="input">
-            {input}
+           <p>
+            {input || 0}
+            </p> 
         </div>
       )
 
